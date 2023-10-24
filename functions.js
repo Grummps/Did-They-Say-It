@@ -13,7 +13,21 @@ const Homer = [
     "I’m in no condition to drive…wait! I shouldn’t listen to myself, I’m drunk!",
     "I’m a white male, age 18 to 49. Everyone listens to me, no matter how dumb my suggestions are."
 ];
-const quotes = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9","10"];
+
+const quotes = [
+    "0", 
+    "1", 
+    "2", 
+    "3", 
+    "4", 
+    "5", 
+    "6", 
+    "7", 
+    "8", 
+    "9",
+    "10"
+];
+
 var quoteUsed = "";
 var yes = false;
 
