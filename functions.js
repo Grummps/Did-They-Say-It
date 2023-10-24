@@ -40,20 +40,20 @@ const loadQuote = () => {
     let homerIndex = Math.floor(Math.random() * Homer.length);
     let quotesIndex = Math.floor(Math.random() * quotes.length);
     const quoteId = document.getElementById("quoteId");
-    
+
     if (x % 2 == 0) {                               // load a Homer quote
         let quote = document.createElement("h2");
-        quote.innerHTML = `Did Homer Simpson say: ${Homer[homerIndex]}`;
+        quote.innerHTML = `Did Homer Simpson say: ${Homer[homerIndex]}`; // could replace "Homer Simpson" with ${nameOfCharacterChosen}
         quoteId.append(quote);
         // maybe quoteUsed = Homer[homerIndex]
-        //split() so no duplicates?
+        // split() so no duplicates?
     }
     else {                                          // load from quotes
         let quote = document.createElement("h2");
         quote.innerHTML = `Did Homer Simpson say: ${quotes[quotesIndex]}`;
         quoteId.append(quote);  
-        // maybe quoteUsed = quotes[quotesIndex]
-        //split() so no duplicates?
+        // quoteUsed = quotes[quotesIndex]
+        // split() 
     } 
 }
 
