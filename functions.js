@@ -1,5 +1,7 @@
 var guesses = 0;
 var correctGuesses = 0;
+var quoteUsed = "";
+var yes = false;
 
 const Homer = [
     "If he's so smart, how come he's dead?", 
@@ -24,12 +26,8 @@ const quotes = [
     "6", 
     "7", 
     "8", 
-    "9",
-    "10"
+    "9"
 ];
-
-var quoteUsed = "";
-var yes = false;
 
 const checkGuess = () => {
     if (guesses = 10) {
@@ -42,15 +40,20 @@ const loadQuote = () => {
     let homerIndex = Math.floor(Math.random() * Homer.length);
     let quotesIndex = Math.floor(Math.random() * quotes.length);
     const quoteId = document.getElementById("quoteId");
+    
     if (x % 2 == 0) {                               // load a Homer quote
         let quote = document.createElement("h2");
         quote.innerHTML = `Did Homer Simpson say: ${Homer[homerIndex]}`;
         quoteId.append(quote);
+        // maybe quoteUsed = Homer[homerIndex]
+        //split() so no duplicates?
     }
     else {                                          // load from quotes
         let quote = document.createElement("h2");
         quote.innerHTML = `Did Homer Simpson say: ${quotes[quotesIndex]}`;
         quoteId.append(quote);  
+        // maybe quoteUsed = quotes[quotesIndex]
+        //split() so no duplicates?
     } 
 }
 
