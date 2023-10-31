@@ -22,3 +22,13 @@ img {
     display: inline-block;
     margin-left: 25%;
 }
+
+#homer {
+    background-image: url("images/homer.png");
+}
+
+.firstPage {
+    background-color: lightblue;
+    text-align: center;
+    margin-top: 10%;
+}

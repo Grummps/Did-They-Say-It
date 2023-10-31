@@ -3,6 +3,7 @@ var correctGuesses = 0;
 var quoteUsed = "";
 var yes = false;
 var temp = [];
+var nameOfCharacterChosen = "";
 
 var Homer = [
     "If he's so smart, how come he's dead?", 
@@ -17,7 +18,7 @@ var Homer = [
     "I’m a white male, age 18 to 49. Everyone listens to me, no matter how dumb my suggestions are."
 ];
 
-var quotes = [
+var Quotes = [
     "0", 
     "1", 
     "2", 
@@ -31,17 +32,21 @@ var quotes = [
 ];
 
 var mScott = [
-    "0", 
-    "1", 
-    "2", 
-    "3", 
-    "4", 
-    "5", 
-    "6", 
-    "7", 
-    "8", 
-    "9"
+    "Sometimes I’ll start a sentence, and I don’t even know where it’s going. I just hope I find it along the way.", 
+    "Well, well, well how the turntables.", 
+    "You all took a life here today. You did. The life of the party.", 
+    "Wikipedia is the best thing ever. Anyone in the world can write anything they want about any subject. So you know you are getting the best possible information.", 
+    "I am running away from my responsibilities. And it feels good.", 
+    "I love inside jokes. I’d love to be a part of one someday.", 
+    "I’m not superstitious but I am a little stitious.", 
+    "They’re trying to make me an escape goat.", 
+    "I don’t hate it. I just don’t like it at all and it’s terrible.", 
+    "Mo’ money, mo’ problems."
 ];
+
+var quoteArrays = [Homer, Quotes, mScott];
+var characterArrays = [Homer, mScott];
+
 
 const checkGuess = () => {
     if (guesses = 10) {
@@ -49,22 +54,31 @@ const checkGuess = () => {
     }
 }
 
+const chooseCharacter = () => {
+    const div = document.getElementsByClassName("firstPage");
+    characterArrays.forEach(element => {
+        let img = document.createElement("p");
+        img.innerHTML = `<img src="${element}.png"`
+    });
+
+}
+
 const loadQuote = () => {
     let x = Math.floor(Math.random() * Homer.length);
-    let homerIndex = Math.floor(Math.random() * Homer.length);
+    let chosenIndex = Math.floor(Math.random() * Chosen.length);
     let quotesIndex = Math.floor(Math.random() * quotes.length);
     const quoteId = document.getElementById("quoteId");
 
-        if (x % 2 == 0) {                               // load a Homer quote
+        if (x % 2 == 0) {                               // load a character quote
             let quote = document.createElement("h2");
-            quote.innerHTML = `Did Homer Simpson say: ${Homer[homerIndex]}`; // could replace "Homer Simpson" with ${nameOfCharacterChosen}
+            quote.innerHTML = `Did ${nameOfCharacterChosen} say: ${Chosen[chosenIndex]}`; // could replace "Homer Simpson" with ${nameOfCharacterChosen}
             quoteId.append(quote);
             
-            quoteUsed = Homer[homerIndex];
+            quoteUsed = Chosen[chosenIndex];
 
-            console.log(Homer[homerIndex]);
+            console.log(Chosen[chosenIndex]);
             console.log(temp);
-            Homer.splice(homerIndex, 1);         // no duplicates
+            Chosen.splice(chosenIndex, 1);         // no duplicates
             console.log(Homer);
         }
         else {                                          // load from quotes
@@ -81,7 +95,7 @@ const loadQuote = () => {
 }
 
 const checkQuote = () => { // makes "yes" the correct answer
-    Homer.forEach(element => {
+    Homer.forEach(element => { // fix this
         if (quoteUsed == element) {
             yes = true;
         }
