@@ -1,50 +1,53 @@
-var quoteContent = `
-
-[
+var quoteContent = `[
     {
-        "id": "homer",
-        "quotes": [
-            "If he's so smart, how come he's dead?", 
-            "Operator, give me the number for 911!", 
-            "Stupidity got us into this mess, and stupidity will get us out.",
-            "I wish God were alive to see this.", 
-            "Fame was like a drug, but what was even more like a drug were the drugs.", 
-            "You’ll have to speak up. I’m wearing a towel.",
-            "I was working on a flat tax proposal and I accidentally proved there’s no god.", 
-            "Marriage is like a coffin and each kid is another nail.", 
-            "I’m in no condition to drive…wait! I shouldn’t listen to myself, I’m drunk!",
-            "I’m a white male, age 18 to 49. Everyone listens to me, no matter how dumb my suggestions are."
-        ]
+        "homerQuotes": {
+            "id": "homer",
+            "quotes": [
+                "If he's so smart, how come he's dead?",
+                "Operator, give me the number for 911!",
+                "Stupidity got us into this mess, and stupidity will get us out.",
+                "I wish God were alive to see this.",
+                "Fame was like a drug, but what was even more like a drug were the drugs.",
+                "You’ll have to speak up. I’m wearing a towel.",
+                "I was working on a flat tax proposal and I accidentally proved there’s no god.",
+                "Marriage is like a coffin and each kid is another nail.",
+                "I’m in no condition to drive…wait! I shouldn’t listen to myself, I’m drunk!",
+                "I’m a white male, age 18 to 49. Everyone listens to me, no matter how dumb my suggestions are."
+            ]
+        }
     },
     {
-        "id": "None",
-        "quotes": [
-            "0", 
-            "1", 
-            "2", 
-            "3", 
-            "4", 
-            "5", 
-            "6", 
-            "7", 
-            "8", 
-            "9"
-        ]
+        "randomQuotes": {
+            "id": "None",
+            "quotes": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9"
+            ]
+        }
     },
     {
-        "id": "mScott",
-        "quotes": [
-            "Sometimes I’ll start a sentence, and I don’t even know where it’s going. I just hope I find it along the way.", 
-            "Well, well, well how the turntables.", 
-            "You all took a life here today. You did. The life of the party.", 
-            "Wikipedia is the best thing ever. Anyone in the world can write anything they want about any subject. So you know you are getting the best possible information.", 
-            "I am running away from my responsibilities. And it feels good.", 
-            "I love inside jokes. I’d love to be a part of one someday.", 
-            "I’m not superstitious but I am a little stitious.", 
-            "They’re trying to make me an escape goat.", 
-            "I don’t hate it. I just don’t like it at all and it’s terrible.", 
-            "Mo’ money, mo’ problems."
-        ]
+        "mScottQuotes": {
+            "id": "mScott",
+            "quotes": [
+                "Sometimes I’ll start a sentence, and I don’t even know where it’s going. I just hope I find it along the way.",
+                "Well, well, well how the turntables.",
+                "You all took a life here today. You did. The life of the party.",
+                "Wikipedia is the best thing ever. Anyone in the world can write anything they want about any subject. So you know you are getting the best possible information.",
+                "I am running away from my responsibilities. And it feels good.",
+                "I love inside jokes. I’d love to be a part of one someday.",
+                "I’m not superstitious but I am a little stitious.",
+                "They’re trying to make me an escape goat.",
+                "I don’t hate it. I just don’t like it at all and it’s terrible.",
+                "Mo’ money, mo’ problems."
+            ]
+        }
     }
-]
-`;
+]`;
