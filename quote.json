@@ -17,8 +17,8 @@ var quoteContent = `
         ]
     },
     {
-        
-        "Quotes": [
+        "id": "None",
+        "quotes": [
             "0", 
             "1", 
             "2", 
@@ -33,7 +33,7 @@ var quoteContent = `
     },
     {
         "id": "mScott",
-        "mScott": [
+        "quotes": [
             "Sometimes I’ll start a sentence, and I don’t even know where it’s going. I just hope I find it along the way.", 
             "Well, well, well how the turntables.", 
             "You all took a life here today. You did. The life of the party.", 
@@ -47,4 +47,4 @@ var quoteContent = `
         ]
     }
 ]
-`
+`;

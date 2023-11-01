@@ -5,6 +5,8 @@ var yes = false;
 var temp = [];
 var nameOfCharacterChosen = "";
 
+
+
 var Homer = [
     "If he's so smart, how come he's dead?", 
     "Operator, give me the number for 911!", 
