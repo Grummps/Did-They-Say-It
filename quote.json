@@ -1,6 +1,7 @@
-var quoteContent = `[
-    {
-        "homerQuotes": {
+var quoteContent = `
+{
+    "characters": [
+        {
             "id": "homer",
             "quotes": [
                 "If he's so smart, how come he's dead?",
@@ -14,11 +15,9 @@ var quoteContent = `[
                 "I’m in no condition to drive…wait! I shouldn’t listen to myself, I’m drunk!",
                 "I’m a white male, age 18 to 49. Everyone listens to me, no matter how dumb my suggestions are."
             ]
-        }
-    },
-    {
-        "randomQuotes": {
-            "id": "None",
+        },
+        {
+            "id": "random",
             "quotes": [
                 "0",
                 "1",
@@ -31,10 +30,8 @@ var quoteContent = `[
                 "8",
                 "9"
             ]
-        }
-    },
-    {
-        "mScottQuotes": {
+        },
+        {
             "id": "mScott",
             "quotes": [
                 "Sometimes I’ll start a sentence, and I don’t even know where it’s going. I just hope I find it along the way.",
@@ -48,6 +45,7 @@ var quoteContent = `[
                 "I don’t hate it. I just don’t like it at all and it’s terrible.",
                 "Mo’ money, mo’ problems."
             ]
-        }
-    }
-]`;
+        },
+    ]
+}`;
+

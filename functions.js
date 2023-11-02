@@ -6,10 +6,10 @@ var temp = [];
 var nameOfCharacterChosen = "";
 var jsonContent = JSON.parse(quoteContent);
 
-var homerArray = jsonContent[0].homerQuotes.quotes;
-var homerId = jsonContent[0].homerQuotes.id;
-var mScottArray = jsonContent[2].mScottQuotes.quotes;
-var mScottId = jsonContent[2].mScottQuotes.id;
+var homerArray = jsonContent[0].quotes;
+var homerId = jsonContent[0].id;
+var mScottArray = jsonContent[2].quotes;
+var mScottId = jsonContent[2].id;
 
 Chosen = [homerArray, mScottArray];
 
@@ -19,10 +19,14 @@ const checkGuess = () => {
     }
 }
 
+jsonContent.forEach(element => {
+    console.log(element);
+    console.log(element.id);
+});
 
 
-const chooseCharacter = () => {
-    const div = document.getElementsByClassName("firstPage");
+const chooseCharacter = () => { // chooseCharacter function that displays images, lets the user click on an image, the character on that image 
+    const div = document.getElementsByClassName("firstPage");  // becomes the chosen character for the game
     Chosen.forEach(element => {
             let img = document.createElement("p");
             img.innerHTML = `<img src="${element.id}.png"`
@@ -31,7 +35,7 @@ const chooseCharacter = () => {
 
 }
 
-const loadQuote = () => {
+const loadQuote = () => { // 
     let x = Math.floor(Math.random() * jsonContent[1].randomQuotes.quotes.length);
     let chosenIndex = Math.floor(Math.random() * Chosen[0].length);
     let quotesIndex = Math.floor(Math.random() * jsonContent[1].randomQuotes.quotes.length);
