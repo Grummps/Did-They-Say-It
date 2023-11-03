@@ -5,13 +5,13 @@ var yes = false;
 var temp = [];
 var nameOfCharacterChosen = "";
 var jsonContent = JSON.parse(quoteContent);
+console.log(jsonContent);
+var homerArray = jsonContent.characters[0].quotes;
+var homerId = jsonContent.characters[0].id;
+var mScottArray = jsonContent.characters[2].quotes;
+var mScottId = jsonContent.characters[2].id;
 
-var homerArray = jsonContent[0].quotes;
-var homerId = jsonContent[0].id;
-var mScottArray = jsonContent[2].quotes;
-var mScottId = jsonContent[2].id;
-
-Chosen = [homerArray, mScottArray];
+Chosen = jsonContent.characters;
 
 const checkGuess = () => {
     if (guesses = 10) {
@@ -19,20 +19,17 @@ const checkGuess = () => {
     }
 }
 
-jsonContent.forEach(element => {
-    console.log(element);
-    console.log(element.id);
-});
+
 
 
 const chooseCharacter = () => { // chooseCharacter function that displays images, lets the user click on an image, the character on that image 
-    const div = document.getElementsByClassName("firstPage");  // becomes the chosen character for the game
+    const div = document.querySelector(".firstPage");  // becomes the chosen character for the game
     Chosen.forEach(element => {
             let img = document.createElement("p");
-            img.innerHTML = `<img src="${element.id}.png"`
+            img.innerHTML = `<img src="images/${element.id}.png"/>`
+            div.appendChild(img);
             console.log(element.id); 
     });
-
 }
 
 const loadQuote = () => { // 
@@ -56,7 +53,7 @@ const loadQuote = () => { //
         }
         else {                                          // load from quotes
             let quote = document.createElement("h2");
-            quote.innerHTML = `Did Homer Simpson say: ${jsonContent[1].randomQuotes.quotes.length[quotesIndex]}`;
+            quote.innerHTML = `Did ${nameOfCharacterChosen} say: ${jsonContent[1].randomQuotes.quotes.length[quotesIndex]}`;
             quoteId.append(quote);  
             
             quoteUsed = jsonContent[1].randomQuotes.quotes.length[quotesIndex]

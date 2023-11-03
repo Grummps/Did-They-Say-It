@@ -45,7 +45,7 @@ var quoteContent = `
                 "I don’t hate it. I just don’t like it at all and it’s terrible.",
                 "Mo’ money, mo’ problems."
             ]
-        },
+        }
     ]
 }`;
 
