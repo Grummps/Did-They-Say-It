@@ -42,7 +42,7 @@ const loadQuote = () => { //
         quoteId.append(quote);
 
         quoteUsed = Chosen[0].quotes[chosenIndex];
-        Chosen.quotes[chosenIndex].splice(chosenIndex, 1);         // no duplicates
+       // Chosen.quotes[chosenIndex].splice(chosenIndex, 1);         // no duplicates
 
     }
     else {                                          // load random quote
@@ -57,11 +57,14 @@ const loadQuote = () => { //
 }
 
 const checkQuote = () => { // makes "yes" the correct answer
-    Homer.forEach(element => { // fix this
+    Chosen[0].quotes.forEach(element => {
+        console.log("CheckQuote() = " + element); // fix this
         if (quoteUsed == element) {
             yes = true;
+            console.log("checkQuote works = " + quoteUsed)
         }
     });
+    
     return yes;
 }
 
@@ -72,5 +75,6 @@ const runGame = () => {
     }
 }
 
+checkQuote();
 chooseCharacter();
 loadQuote();
