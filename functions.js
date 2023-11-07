@@ -18,7 +18,7 @@ const checkGuess = () => {
         // output correct guess / guesses
     }
 }
-
+console.log(Chosen[2].quotes[1]);
 
 
 
@@ -33,15 +33,16 @@ const chooseCharacter = () => { // chooseCharacter function that displays images
 }
 
 const loadQuote = () => { // 
-    let x = Math.floor(Math.random() * jsonContent[1].randomQuotes.quotes.length);
-    let chosenIndex = Math.floor(Math.random() * Chosen[0].length);
-    let quotesIndex = Math.floor(Math.random() * jsonContent[1].randomQuotes.quotes.length);
+    let x = Math.floor(Math.random() * jsonContent.characters[1].quotes.length);
+    let chosenIndex = Math.floor(Math.random() * Chosen[0].quotes.length);
+    let quotesIndex = Math.floor(Math.random() * jsonContent.characters[1].quotes.length);
+    let characterIndex = Math.floor(Math.random() * jsonContent.characters.length);
     const quoteId = document.getElementById("quoteId");
 
         if (x % 2 == 0) {                               // load a character quote
 
             let quote = document.createElement("h2");
-            quote.innerHTML = `Did ${nameOfCharacterChosen} say: ${Chosen[chosenIndex]}`; // could replace "Homer Simpson" with ${nameOfCharacterChosen}
+            quote.innerHTML = `Did ${nameOfCharacterChosen} say: ${Chosen[0].quotes[chosenIndex]}`; 
             quoteId.append(quote);
             
             quoteUsed = Chosen[chosenIndex];
@@ -53,11 +54,8 @@ const loadQuote = () => { //
         }
         else {                                          // load from quotes
             let quote = document.createElement("h2");
-            quote.innerHTML = `Did ${nameOfCharacterChosen} say: ${jsonContent[1].randomQuotes.quotes.length[quotesIndex]}`;
+            quote.innerHTML = `Did ${nameOfCharacterChosen} say: ${jsonContent.characters[characterIndex].quotes[quotesIndex]}`;
             quoteId.append(quote);  
-            
-            quoteUsed = jsonContent[1].randomQuotes.quotes.length[quotesIndex]
-            
             
         }
         return quoteUsed;
@@ -73,5 +71,12 @@ const checkQuote = () => { // makes "yes" the correct answer
     return yes;
 }
 
+const runGame = () => {
+    while (guesses <= 10) {
+        loadQuote();
+        guesses++;
+    }
+}
+
 chooseCharacter();
-loadQuote();
+runGame();
