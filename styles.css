@@ -33,6 +33,18 @@ img {
     margin-top: 10%;
 }
 
+.firstPage input:hover {
+    background-color: gray;
+}
+
+.firstPage input {
+    background-color: black;
+    border-radius: 50%;
+    width: 10%;
+    display: inline-block;
+    margin-left: 25%;
+}
+
 p {
     background-color: aquamarine;
 }
