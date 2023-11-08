@@ -13,18 +13,20 @@ Chosen = jsonContent.characters;
 
 const checkGuess = () => {
     if (guesses = 10) {
-        // output correct guess / guesses
+        console.log(`Score = ${correctGuesses}/${guesses}`)
     }
 }
 
 const chooseCharacter = () => { // chooseCharacter function that displays images, lets the user click on an image, the character on that image 
     const div = document.querySelector(".firstPage");  // becomes the chosen character for the game
     Chosen.forEach(element => {
-        let img = document.createElement("p");
-        img.innerHTML = `<img src="images/${element.id}.png"/>`
-        div.appendChild(img);
+        let input = document.createElement("input");
+        input.innerHTML = `<img src="images/${element.id}.png"/>`
+        div.appendChild(input);
         console.log(element.id);
     });
+
+    
 }
 
 const loadQuote = () => { // load a character quote
@@ -34,7 +36,7 @@ const loadQuote = () => { // load a character quote
     let characterIndex = Math.floor(Math.random() * jsonContent.characters.length); // For choosing a random character from the json
     const quoteId = document.getElementById("quoteId");
 
-    if (x % 2 == 0) { // Load a quote from the chosen character
+    if (x > 6) { // Load a quote from the chosen character
         let quote = document.createElement("h2");
         quote.innerHTML = `Did ${nameOfCharacterChosen} say: ${Chosen[0].quotes[chosenIndex]}`; 
         quoteId.append(quote);

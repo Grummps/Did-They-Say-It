@@ -17,18 +17,18 @@ var quoteContent = `
             ]
         },
         {
-            "id": "random",
+            "id": "wayne",
             "quotes": [
-                "0",
-                "1",
-                "2",
-                "3",
-                "4",
-                "5",
-                "6",
-                "7",
-                "8",
-                "9"
+                "I like being misunderstood.",
+                "Real G's move in silence like lasagna.",
+                "I lost my mind, it's somewhere out there stranded.",
+                "I'm trapped in a maze, therefore I'm amazing.",
+                "Billion dollar smile, I sell myself short if I grin.",
+                "Yes, I do it big. Call me 'Little Astronomical'.",
+                "Life is a beach, I'm just playin' in the sand.",
+                "The best things in life are free, not cheap.",
+                "I speak the truth, but I guess that's a foreign language to y'all.",
+                "You know Father Time, and we all know Mother Nature."
             ]
         },
         {
