@@ -19,14 +19,14 @@ const checkGuess = () => {
 
 const chooseCharacter = () => { // chooseCharacter function that displays images, lets the user click on an image, the character on that image 
     const div = document.querySelector(".firstPage");  // becomes the chosen character for the game
-    Chosen.forEach(element => {
+    /* Chosen.forEach(element => {
         let input = document.createElement("input");
         input.innerHTML = `<img src="images/${element.id}.png"/>`
         div.appendChild(input);
         console.log(element.id);
-    });
+    }); */
 
-    
+
 }
 
 const loadQuote = () => { // load a character quote
