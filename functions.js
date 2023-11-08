@@ -2,7 +2,6 @@ var guesses = 0;
 var correctGuesses = 0;
 var quoteUsed = "";
 var yes = false;
-var temp = [];
 var nameOfCharacterChosen = "";
 var jsonContent = JSON.parse(quoteContent);
 var homerArray = jsonContent.characters[0].quotes;
@@ -28,24 +27,22 @@ const chooseCharacter = () => { // chooseCharacter function that displays images
     });
 }
 
-const loadQuote = () => { // 
+const loadQuote = () => { // load a character quote
     let x = Math.floor(Math.random() * jsonContent.characters[1].quotes.length);
     let chosenIndex = Math.floor(Math.random() * Chosen[0].quotes.length);
     let quotesIndex = Math.floor(Math.random() * jsonContent.characters[1].quotes.length);
     let characterIndex = Math.floor(Math.random() * jsonContent.characters.length); // For choosing a random character from the json
     const quoteId = document.getElementById("quoteId");
 
-    if (x % 2 == 0) {                               // load a character quote
-
+    if (x % 2 == 0) { // Load a quote from the chosen character
         let quote = document.createElement("h2");
         quote.innerHTML = `Did ${nameOfCharacterChosen} say: ${Chosen[0].quotes[chosenIndex]}`; 
         quoteId.append(quote);
 
         quoteUsed = Chosen[0].quotes[chosenIndex];
        // Chosen.quotes[chosenIndex].splice(chosenIndex, 1);         // no duplicates
-
     }
-    else {                                          // load random quote
+    else { // load random quote
         let quote = document.createElement("h2");
         quote.innerHTML = `Did ${nameOfCharacterChosen} say: ${jsonContent.characters[characterIndex].quotes[quotesIndex]}`; // Choose random quote from a random character
         quoteId.append(quote);
@@ -53,18 +50,17 @@ const loadQuote = () => { //
 
     }
     return quoteUsed;
-
 }
 
-const checkQuote = () => { // makes "yes" the correct answer
+const checkQuote = () => { 
     Chosen[0].quotes.forEach(element => {
-        console.log("CheckQuote() = " + element); // fix this
+        console.log("CheckQuote() = " + element); 
         if (quoteUsed == element) {
             yes = true;
             console.log("checkQuote works = " + quoteUsed)
         }
     });
-    
+    console.log(yes);
     return yes;
 }
 
@@ -75,6 +71,7 @@ const runGame = () => {
     }
 }
 
-checkQuote();
+
 chooseCharacter();
 loadQuote();
+checkQuote();
