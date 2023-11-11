@@ -3,6 +3,11 @@ header {
     margin-top: 10%;
 }
 
+h1 {
+    font-size: 500%;
+    margin-bottom: 1%;
+}
+
 body {
     background-color: lightblue;
 }
@@ -29,20 +34,21 @@ img {
 
 .firstPage {
     background-color: lightblue;
-    text-align: center;
-    margin-top: 10%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 5%;
 }
 
-.firstPage input:hover {
+.firstPage img:hover {
     background-color: gray;
 }
 
-.firstPage input {
+.firstPage img {
     background-color: black;
     border-radius: 50%;
     width: 10%;
-    display: inline-block;
-    margin-left: 25%;
+    padding: .5%
 }
 
 p {

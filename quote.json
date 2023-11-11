@@ -2,7 +2,7 @@ var quoteContent = `
 {
     "characters": [
         {
-            "id": "homer",
+            "id": "Homer Simpson",
             "quotes": [
                 "If he's so smart, how come he's dead?",
                 "Operator, give me the number for 911!",
@@ -17,7 +17,7 @@ var quoteContent = `
             ]
         },
         {
-            "id": "wayne",
+            "id": "Lil Wayne",
             "quotes": [
                 "I like being misunderstood.",
                 "Real G's move in silence like lasagna.",
@@ -32,7 +32,7 @@ var quoteContent = `
             ]
         },
         {
-            "id": "mScott",
+            "id": "Michael Scott",
             "quotes": [
                 "Sometimes I’ll start a sentence, and I don’t even know where it’s going. I just hope I find it along the way.",
                 "Well, well, well how the turntables.",
