@@ -20,14 +20,6 @@ body {
     margin-top: 5%;
 }
 
-img {
-    background-color: black;
-    border-radius: 50%;
-    width: 10%;
-    display: inline-block;
-    margin-left: 25%;
-}
-
 #homer {
     background-image: url("images/homer.png");
 }
@@ -35,7 +27,7 @@ img {
 .firstPage {
     background-color: lightblue;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     margin-top: 5%;
 }
@@ -47,8 +39,10 @@ img {
 .firstPage img {
     background-color: black;
     border-radius: 50%;
-    width: 10%;
-    padding: .5%
+    height: 10em;
+    width: 10em;
+    padding: .5%;
+    margin: 1em;
 }
 
 p {

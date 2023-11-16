@@ -99,10 +99,10 @@ const handleYesButtonClick = () => {
     if (yes) {
         correctGuesses++;
         guesses++;
-
+        console.log(guesses);
     } else {
         guesses++;
-
+        console.log(guesses);
     }
     quoteInner.innerHTML = "";
     quoteId.appendChild(quoteInner);
@@ -119,10 +119,10 @@ const handleNoButtonClick = () => {
     if (!yes) {
         correctGuesses++;
         guesses++;
-
+        console.log(guesses);
     } else {
         guesses++;
-
+        console.log(guesses);
     }
     quoteInner.innerHTML = "";
     quoteId.appendChild(quoteInner);
@@ -138,9 +138,12 @@ const gameStatus = () => {
 }
 
 const runGame = () => {
-    
-    
 
+    loadQuote();
+    checkQuote();
+    answerButton();
+    checkGuess();
+   
 };
 
 
