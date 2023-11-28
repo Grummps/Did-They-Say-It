@@ -11,7 +11,7 @@ Chosen = jsonContent.characters;
 
 const checkGuess = () => {
     if (guesses === 10) {
-        console.log(`Score = ${correctGuesses}/${guesses}`)
+        console.log(`Score = ${correctGuesses}/${guesses}`);
     }
 }
 
@@ -21,8 +21,10 @@ const chooseCharacter = () => {
     document.getElementById("quoteId").style.display = "none";
     Chosen.forEach(character => {
         let image = document.createElement("img");
+        let firstPage = document.getElementById("firstPage");
         image.src = `images/${character.id}.png`;
         image.alt = character.id;
+       // firstPage.appendChild(image);
         image.addEventListener("click", () => {
             nameOfCharacterChosen = character.id;
             Chosen.forEach(element => {
@@ -31,18 +33,34 @@ const chooseCharacter = () => {
                 }
             });
             console.log(chosenArray);
-            div.style.display = "none"; // Hide the character selection div
-            document.getElementById("quoteId").style.display = "block"; // Show the quote div
-            document.getElementById("YesNo").style.display = "block";
+            firstPage.style.display = "none"; // Hide the character selection div
+            let div = document.createElement("div");
+            div.id = "quoteId";
+            let divContainer = document.getElementById("container");
+            divContainer.appendChild(div);
+            let h2 = document.createElement("h2");
+            div.appendChild(h2);
+            let form = document.createElement("form");
+            div.appendChild(form);
+            form.id = "YesNo";
+            let buttonYes = document.createElement("button");
+            let buttonNo = document.createElement("button");
+            buttonYes.type = "button";
+            buttonNo.type = "button";
+            form.appendChild(buttonYes);
+            form.appendChild(buttonNo);
+         //   document.getElementById("quoteId").style.display = "block"; // Show the quote div
+        //    document.getElementById("YesNo").style.display = "block";
 
         });
-        div.appendChild(image);
+        firstPage.appendChild(image);
     });
-}
+} 
 
 
 
 const loadQuote = () => { // load a character quote
+  //  const result = await chooseCharacter();
     let x = Math.floor(Math.random() * jsonContent.characters[1].quotes.length);
     let chosenIndex = Math.floor(Math.random() * chosenArray.length);
     let quotesIndex = Math.floor(Math.random() * jsonContent.characters[1].quotes.length);
@@ -66,6 +84,7 @@ const loadQuote = () => { // load a character quote
     }
     return quoteUsed;
 }
+
 
 const checkQuote = () => {
     yes = false;
@@ -95,7 +114,7 @@ const answerButton = () => {
 const handleYesButtonClick = () => {
     const quoteId = document.getElementById("quoteId");
     const quoteInner = document.querySelector("#quoteId h2");
-    
+
     if (yes) {
         correctGuesses++;
         guesses++;
@@ -115,7 +134,7 @@ const handleNoButtonClick = () => {
     const quoteId = document.getElementById("quoteId");
     const quoteInner = document.querySelector("#quoteId h2");
     console.log(quoteInner);
-    
+
     if (!yes) {
         correctGuesses++;
         guesses++;
@@ -138,14 +157,18 @@ const gameStatus = () => {
 }
 
 const runGame = () => {
-
-    loadQuote();
-    checkQuote();
+    console.log("name: " + nameOfCharacterChosen);
+    chooseCharacter();
+    if (typeof nameOfCharacterChosen !== undefined) {
+        console.log("If statement works");
+        loadQuote();
+    }
+    
+    
+    checkQuote();   
     answerButton();
     checkGuess();
-   
-};
+}
 
 
-chooseCharacter();
 runGame();
