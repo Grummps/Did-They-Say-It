@@ -16,15 +16,14 @@ const checkGuess = () => {
 }
 
 const chooseCharacter = () => {
-    const div = document.querySelector(".firstPage");
-    document.getElementById("YesNo").style.display = "none";
-    document.getElementById("quoteId").style.display = "none";
+    const firstPage = document.querySelector(".firstPage");
+//    document.getElementById("YesNo").style.display = "none";
+//    document.getElementById("quoteId").style.display = "none";
     Chosen.forEach(character => {
         let image = document.createElement("img");
-        let firstPage = document.getElementById("firstPage");
         image.src = `images/${character.id}.png`;
         image.alt = character.id;
-       // firstPage.appendChild(image);
+    //    firstPage.appendChild(image);
         image.addEventListener("click", () => {
             nameOfCharacterChosen = character.id;
             Chosen.forEach(element => {
@@ -34,22 +33,26 @@ const chooseCharacter = () => {
             });
             console.log(chosenArray);
             firstPage.style.display = "none"; // Hide the character selection div
+
+            // Create the block that will load the quote and let the user choose yes or no
             let div = document.createElement("div");
-            div.id = "quoteId";
-            let divContainer = document.getElementById("container");
-            divContainer.appendChild(div);
+            let divContainer = document.getElementById("container");            
             let h2 = document.createElement("h2");
-            div.appendChild(h2);
             let form = document.createElement("form");
-            div.appendChild(form);
-            form.id = "YesNo";
             let buttonYes = document.createElement("button");
             let buttonNo = document.createElement("button");
+
+            div.id = "quoteId";
+            divContainer.appendChild(div);
+            div.appendChild(h2);
+            div.appendChild(form);
+            form.id = "YesNo";
+
             buttonYes.type = "button";
             buttonNo.type = "button";
             form.appendChild(buttonYes);
             form.appendChild(buttonNo);
-         //   document.getElementById("quoteId").style.display = "block"; // Show the quote div
+        //    document.getElementById("quoteId").style.display = "block"; // Show the quote div
         //    document.getElementById("YesNo").style.display = "block";
 
         });
@@ -163,7 +166,8 @@ const runGame = () => {
         console.log("If statement works");
         loadQuote();
     }
-    
+    console.log("name after click: " + nameOfCharacterChosen);
+
     
     checkQuote();   
     answerButton();
