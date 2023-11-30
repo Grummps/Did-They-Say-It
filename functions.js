@@ -42,6 +42,8 @@ const chooseCharacter = () => {
             let buttonYes = document.createElement("button");
             let buttonNo = document.createElement("button");
 
+            buttonYes.innerHTML = "Yes";
+            buttonNo.innerHTML = "No";
             div.id = "quoteId";
             divContainer.appendChild(div);
             div.appendChild(h2);
@@ -115,8 +117,8 @@ const answerButton = () => {
 }
 
 const handleYesButtonClick = () => {
-    const quoteId = document.getElementById("quoteId");
-    const quoteInner = document.querySelector("#quoteId h2");
+//    const quoteId = document.getElementById("quoteId");
+//    const quoteInner = document.querySelector("#quoteId h2");
 
     if (yes) {
         correctGuesses++;
@@ -126,16 +128,16 @@ const handleYesButtonClick = () => {
         guesses++;
         console.log(guesses);
     }
-    quoteInner.innerHTML = "";
-    quoteId.appendChild(quoteInner);
+//    quoteInner.innerHTML = "";
+//    quoteId.appendChild(quoteInner);
     loadQuote();
     console.log("Yes button clicked");
 
 }
 
 const handleNoButtonClick = () => {
-    const quoteId = document.getElementById("quoteId");
-    const quoteInner = document.querySelector("#quoteId h2");
+//    const quoteId = document.getElementById("quoteId");
+//    const quoteInner = document.querySelector("#quoteId h2");
     console.log(quoteInner);
 
     if (!yes) {
@@ -146,30 +148,23 @@ const handleNoButtonClick = () => {
         guesses++;
         console.log(guesses);
     }
-    quoteInner.innerHTML = "";
-    quoteId.appendChild(quoteInner);
+//    quoteInner.innerHTML = "";
+//    quoteId.appendChild(quoteInner);
     loadQuote();
     console.log("No button clicked");
 }
 
 const gameStatus = () => {
     if (guesses === 10) {
-        gameOver === true;
+        gameOver = true;
     }
     return gameOver;
 }
 
 const runGame = () => {
-    console.log("name: " + nameOfCharacterChosen);
     chooseCharacter();
-    if (typeof nameOfCharacterChosen !== undefined) {
-        console.log("If statement works");
-        loadQuote();
-    }
-    console.log("name after click: " + nameOfCharacterChosen);
-
-    
-    checkQuote();   
+    document.addEventListener("DOMContentLoaded", loadQuote);
+    checkQuote();
     answerButton();
     checkGuess();
 }
