@@ -48,3 +48,34 @@ body {
 p {
     background-color: aquamarine;
 }
+
+/* Style for the Yes button */
+button:nth-child(1) {
+    background: linear-gradient(to bottom, #4CAF50, #45a049);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:nth-child(1):hover {
+    background: linear-gradient(to bottom, #45a049, #4CAF50);
+}
+
+/* Style for the No button */
+button:nth-child(2) {
+    background: linear-gradient(to bottom, #FF5733, #D35400);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:nth-child(2):hover {
+    background: linear-gradient(to bottom, #D35400, #FF5733);
+}
+
