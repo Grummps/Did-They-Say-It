@@ -9,7 +9,8 @@ var gameOver = false;
 
 characterList = jsonContent.characters;
 
-const createQuoteBlock = () => { // create a block that the quote will load into
+// create a block that the quote will load into
+const createQuoteBlock = () => { 
     let div = document.createElement("div");
     let divContainer = document.getElementById("container");
     let h2 = document.createElement("h2");
@@ -32,7 +33,8 @@ const createQuoteBlock = () => { // create a block that the quote will load into
 
 }
 
-const chooseCharacter = () => { // choose character page 
+// choose character page 
+const chooseCharacter = () => {
     const firstPage = document.querySelector(".firstPage");
     characterList.forEach(character => {
         let image = document.createElement("img");
@@ -57,7 +59,8 @@ const chooseCharacter = () => { // choose character page
     });
 }
 
-const loadQuote = () => { // load a character quote
+// load a character quote
+const loadQuote = () => { 
     let x = Math.floor(Math.random() * 10);
     let chosenIndex = Math.floor(Math.random() * chosenArray.length);
     let characterIndex = Math.floor(Math.random() * jsonContent.characters.length); // For choosing a random character from the json
@@ -68,7 +71,7 @@ const loadQuote = () => { // load a character quote
     if (x > 8) { // Load a quote from the chosen character
         let chosenQuote = chosenArray[chosenIndex];
         let quote = document.querySelector("#container #quoteId h2");
-        quote.innerHTML = `Did ${nameOfCharacterChosen} say: ${chosenQuote}`;
+        quote.innerHTML = `Did <h2 id="charName"> ${nameOfCharacterChosen} </h2> say: ${chosenQuote}`;
         quoteId.append(quote);
         quoteUsed = chosenQuote;
 
@@ -91,7 +94,8 @@ const loadQuote = () => { // load a character quote
     return quoteUsed;
 }
 
-const checkQuote = () => {
+// will check if the quote loaded matches the chosen character: false for no, true for yes
+const checkQuote = () => { 
     yes = false;
     characterList.find(character => {
         if (character.id === nameOfCharacterChosen) {
@@ -106,20 +110,23 @@ const checkQuote = () => {
     return yes;
 }
 
-const answerButton = () => {
+// function that handles the yes and no buttons
+const answerButton = () => { 
     const buttonYes = document.querySelector('#YesNo button:nth-child(1)');
     const buttonNo = document.querySelector('#YesNo button:nth-child(2)');
     buttonYes.addEventListener('click', handleYesButtonClick);
     buttonNo.addEventListener('click', handleNoButtonClick);
 }
 
-const hideButtons = () => {
+// function that hides the yes or no buttons at the end of the game
+const hideButtons = () => { 
     const buttonYes = document.querySelector('#YesNo button:nth-child(1)');
     const buttonNo = document.querySelector('#YesNo button:nth-child(2)');
     buttonNo.style.display = "none";
     buttonYes.style.display = "none";
 }
 
+// yes button logic
 const handleYesButtonClick = () => {
 
     if (yes) {
@@ -143,7 +150,8 @@ const handleYesButtonClick = () => {
     }
 }
 
-const handleNoButtonClick = () => {
+// no button logic
+const handleNoButtonClick = () => { 
 
     if (!yes) {
         correctGuesses++;
@@ -164,7 +172,8 @@ const handleNoButtonClick = () => {
     }
 }
 
-const shouldEndGame = () => {
+//  if guesses equal 10, the game should end, game ends if the function returns true
+const shouldEndGame = () => { 
     let trueOrFalse = false;
     if (guesses === 10) {
         trueOrFalse = true;
@@ -172,11 +181,13 @@ const shouldEndGame = () => {
     return trueOrFalse;
 }
 
-const handleRestartClick = () => {
+// restart button event handler
+const handleRestartClick = () => { 
     location.reload();
 }
 
-const restartGame = () => {
+// creates a button that lets the user restart the game
+const restartGame = () => { 
     const buttonRes = document.createElement("button");
     const form = document.querySelector("form");
 

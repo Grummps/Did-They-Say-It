@@ -1,25 +1,33 @@
 header {
     text-align: center;
     margin-top: 10%;
+    background: linear-gradient(to bottom, #001f3f, #002d4f); /* Dark blue gradient */
+    margin-right: 30%;
+    margin-left: 30%;
 }
 
 h1 {
     font-size: 500%;
     margin-bottom: 1%;
+    color: #bdc3c7; /* Silver */
 }
 
 body {
-    background-color: lightblue;
+
+    background-image: url("images/galaxy.jpg");
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    
 }
 
 #quoteId {
-    background-color: aliceblue;
+    background: linear-gradient(to bottom, #002d4f, #001f3f); /* Dark blue gradient */
     text-align: center;
     margin-left: 25%;
     margin-right: 25%;
     margin-top: 5%;
     padding: 1em;
-    
+    color: white;
 }
 
 #homer {
@@ -27,7 +35,7 @@ body {
 }
 
 .firstPage {
-    background-color: lightblue;
+    background: linear-gradient(to bottom, #001f3f, #002d4f); /* Dark blue gradient */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,11 +43,13 @@ body {
 }
 
 .firstPage img:hover {
-    background-color: gray;
+    background: linear-gradient(to bottom, #002d4f, #001f3f); /* Dark blue gradient */
+    background: linear-gradient(to bottom, #3a383b, #331747);
+    transform: scale(1.05); 
 }
 
 .firstPage img {
-    background-color: black;
+    background: linear-gradient(to bottom, #002d4f, #001f3f); /* Dark blue gradient */
     border-radius: 50%;
     height: 10em;
     width: 10em;
@@ -48,56 +58,63 @@ body {
 }
 
 p {
-    background-color: aquamarine;
+    background-color: #2ecc71; /* Emerald green */
 }
 
 #charName {
-    color: purple;
+    color: #1e86cc; /* Silver */
     display: inline;
+}
+
+button {
+    margin: 1em;
 }
 
 /* Style for the Yes button */
 button:nth-child(1) {
-    background: linear-gradient(to bottom, #4CAF50, #45a049);
+    background: linear-gradient(to bottom, #27ae60, #219a52); /* Dark green gradient */
     color: #fff;
-    padding: 10px 20px;
+    padding: 12px 24px; 
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, transform 0.3s ease; 
 }
 
 button:nth-child(1):hover {
-    background: linear-gradient(to bottom, #45a049, #4CAF50);
+    background: linear-gradient(to bottom, #219a52, #27ae60);
+    transform: scale(1.05); 
 }
 
 /* Style for the No button */
 button:nth-child(2) {
-    background: linear-gradient(to bottom, #FF5733, #D35400);
+    background: linear-gradient(to bottom, #c0392b, #a53224); /* Dark red gradient */
     color: #fff;
-    padding: 10px 20px;
+    padding: 12px 24px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, transform 0.3s ease;
 }
 
 button:nth-child(2):hover {
-    background: linear-gradient(to bottom, #D35400, #FF5733);
+    background: linear-gradient(to bottom, #a53224, #c0392b);
+    transform: scale(1.05);
 }
 
+/* Style for the Restart button */
 button:nth-child(3) {
-    background: linear-gradient(to bottom, rgb(55, 22, 201), #24c5ca);
+    background: linear-gradient(to bottom, #8e44ad, #7942a0); /* Dark purple gradient */
     color: #fff;
-    padding: 10px 20px;
+    padding: 12px 24px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, transform 0.3s ease;
 }
 
 button:nth-child(3):hover {
-    background: linear-gradient(to bottom, #00d3b7, #3336ff);
+    background: linear-gradient(to bottom, #7942a0, #8e44ad);
+    transform: scale(1.05);
 }
-
 
