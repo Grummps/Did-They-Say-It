@@ -81,3 +81,18 @@ button:nth-child(2):hover {
     background: linear-gradient(to bottom, #D35400, #FF5733);
 }
 
+button:nth-child(3) {
+    background: linear-gradient(to bottom, rgb(55, 22, 201), #24c5ca);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:nth-child(3):hover {
+    background: linear-gradient(to bottom, #00d3b7, #3336ff);
+}
+
+

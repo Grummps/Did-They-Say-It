@@ -134,6 +134,7 @@ const handleYesButtonClick = () => {
         hideButtons();
         let endGame = document.querySelector("#quoteId h2");
         endGame.innerHTML = `Score: ${correctGuesses}/${guesses}`;
+        restartGame();
     }
 
     if (guesses < 10) {
@@ -159,6 +160,7 @@ const handleNoButtonClick = () => {
         hideButtons();
         let endGame = document.querySelector("#quoteId h2");
         endGame.innerHTML = `Score: ${correctGuesses}/${guesses}`;
+        restartGame();
     }
 
     if (guesses < 10) {
@@ -176,6 +178,22 @@ const shouldEndGame = () => {
     return trueOrFalse;
 }
 
+const handleRestartClick = () => {
+    location.reload();
+}
+
+const restartGame = () => {
+    const buttonRes = document.createElement("button");
+    const form = document.querySelector("form");
+
+    buttonRes.type = "button";
+    buttonRes.innerHTML = "Restart Game";
+
+    form.appendChild(buttonRes);
+
+    const restartButton = document.querySelector("#YesNo button:last-child");
+    restartButton.addEventListener("click", handleRestartClick);
+}
 
 const runGame = () => {
     chooseCharacter();
