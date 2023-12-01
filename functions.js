@@ -79,7 +79,7 @@ const loadQuote = () => { // load a character quote
 
     } else { // load random quote
         let quote = document.querySelector("#quoteId h2");
-        quote.innerHTML = `Did ${nameOfCharacterChosen} say: ${jsonContent.characters[characterIndex].quotes[quotesIndex]}`; // Choose random quote from a random character
+        quote.innerHTML = `Did <h2 id="charName"> ${nameOfCharacterChosen} </h2> say: ${jsonContent.characters[characterIndex].quotes[quotesIndex]}`; // Choose random quote from a random character
         quoteId.append(quote);
         quoteUsed = jsonContent.characters[characterIndex].quotes[quotesIndex];
 

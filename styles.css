@@ -51,6 +51,11 @@ p {
     background-color: aquamarine;
 }
 
+#charName {
+    color: purple;
+    display: inline;
+}
+
 /* Style for the Yes button */
 button:nth-child(1) {
     background: linear-gradient(to bottom, #4CAF50, #45a049);
