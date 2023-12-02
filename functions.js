@@ -1,207 +1,230 @@
-var guesses = 0;
-var correctGuesses = 0;
-var quoteUsed = "";
-var yes = false;
-var nameOfCharacterChosen = "";
-var jsonContent = JSON.parse(quoteContent);
-var chosenArray = [];
-var gameOver = false;
+document.addEventListener("DOMContentLoaded", () => {
+    var guesses = 0;
+    var correctGuesses = 0;
+    var quoteUsed = "";
+    var yes = false;
+    var nameOfCharacterChosen = "";
+    var chosenArray = [];
+    var jsonContent;
+    var characterList;
 
-characterList = jsonContent.characters;
+    // function to make a synchronous AJAX request to get quotes
+    function getQuotes() {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', 'quotes.php', false);  // false makes the request synchronous
+        xhr.send();
 
-// create a block that the quote will load into
-const createQuoteBlock = () => { 
-    let div = document.createElement("div");
-    let divContainer = document.getElementById("container");
-    let h2 = document.createElement("h2");
-    let form = document.createElement("form");
-    let buttonYes = document.createElement("button");
-    let buttonNo = document.createElement("button");
-
-    buttonYes.innerHTML = "Yes";
-    buttonNo.innerHTML = "No";
-    div.id = "quoteId";
-    divContainer.appendChild(div);
-    div.appendChild(h2);
-    div.appendChild(form);
-    form.id = "YesNo";
-
-    buttonYes.type = "button";
-    buttonNo.type = "button";
-    form.appendChild(buttonYes);
-    form.appendChild(buttonNo);
-
-}
-
-// choose character page 
-const chooseCharacter = () => {
-    const firstPage = document.querySelector(".firstPage");
-    characterList.forEach(character => {
-        let image = document.createElement("img");
-        image.src = `images/${character.id}.png`;
-        image.alt = character.id;
-        image.addEventListener("click", () => { // starts the game
-            nameOfCharacterChosen = character.id;
-            characterList.forEach(element => {
-                if (element.id === nameOfCharacterChosen) {
-                    chosenArray = element.quotes; // Puts quotes of chosen character into chosen array
-                }
-            });
-            firstPage.style.display = "none"; // Hide the character selection div
-
-            // Create the block that will load the quote and let the user choose yes or no
-            createQuoteBlock();
-            loadQuote();
-            answerButton();
-
-        });
-        firstPage.appendChild(image);
-    });
-}
-
-// load a character quote
-const loadQuote = () => { 
-    let x = Math.floor(Math.random() * 10);
-    let chosenIndex = Math.floor(Math.random() * chosenArray.length);
-    let characterIndex = Math.floor(Math.random() * jsonContent.characters.length); // For choosing a random character from the json
-    let quotesIndex = Math.floor(Math.random() * jsonContent.characters[characterIndex].quotes.length);
-
-    const quoteId = document.getElementById("quoteId");
-
-    if (x > 8) { // Load a quote from the chosen character
-        let chosenQuote = chosenArray[chosenIndex];
-        let quote = document.querySelector("#container #quoteId h2");
-        quote.innerHTML = `Did <h2 id="charName"> ${nameOfCharacterChosen} </h2> say: ${chosenQuote}`;
-        quoteId.append(quote);
-        quoteUsed = chosenQuote;
-
-        // check if quote matches with the character chosen
-        checkQuote();
-        // remove duplicate
-        chosenArray.splice(chosenIndex, 1);
-
-    } else { // load random quote
-        let quote = document.querySelector("#quoteId h2");
-        quote.innerHTML = `Did <h2 id="charName"> ${nameOfCharacterChosen} </h2> say: ${jsonContent.characters[characterIndex].quotes[quotesIndex]}`; // Choose random quote from a random character
-        quoteId.append(quote);
-        quoteUsed = jsonContent.characters[characterIndex].quotes[quotesIndex];
-
-        // check if quote matches with the character chosen
-        checkQuote();
-        // remove used quote so no duplicates arise
-        jsonContent.characters[characterIndex].quotes.splice(quotesIndex, 1);
-    }
-    return quoteUsed;
-}
-
-// will check if the quote loaded matches the chosen character: false for no, true for yes
-const checkQuote = () => { 
-    yes = false;
-    characterList.find(character => {
-        if (character.id === nameOfCharacterChosen) {
-            character.quotes.forEach(element => {
-                if (quoteUsed === element) {
-                    yes = true;
-                }
-            });
+        if (xhr.status === 200) {
+            const jsonData = JSON.parse(xhr.responseText);
+            return jsonData.characters;
+        } else {
+            throw new Error(`Error fetching quotes. Status: ${xhr.status}`);
         }
-    });
-    console.log("True is yes, false is no: " + yes);
-    return yes;
-}
-
-// function that handles the yes and no buttons
-const answerButton = () => { 
-    const buttonYes = document.querySelector('#YesNo button:nth-child(1)');
-    const buttonNo = document.querySelector('#YesNo button:nth-child(2)');
-    buttonYes.addEventListener('click', handleYesButtonClick);
-    buttonNo.addEventListener('click', handleNoButtonClick);
-}
-
-// function that hides the yes or no buttons at the end of the game
-const hideButtons = () => { 
-    const buttonYes = document.querySelector('#YesNo button:nth-child(1)');
-    const buttonNo = document.querySelector('#YesNo button:nth-child(2)');
-    buttonNo.style.display = "none";
-    buttonYes.style.display = "none";
-}
-
-// yes button logic
-const handleYesButtonClick = () => {
-
-    if (yes) {
-        correctGuesses++;
-        guesses++;
-        console.log(guesses);
-    } else {
-        guesses++;
-        console.log(guesses);
     }
 
-    if (shouldEndGame()) {
-        hideButtons();
-        let endGame = document.querySelector("#quoteId h2");
-        endGame.innerHTML = `Score: ${correctGuesses}/${guesses}`;
-        restartGame();
+    jsonContent = getQuotes();
+    characterList = jsonContent;
+    console.log(jsonContent);
+    console.log("CharacterList: ", characterList);
+
+    // create a block that the quote will load into
+    const createQuoteBlock = () => {
+        let div = document.createElement("div");
+        let divContainer = document.getElementById("container");
+        let h2 = document.createElement("h2");
+        let form = document.createElement("form");
+        let buttonYes = document.createElement("button");
+        let buttonNo = document.createElement("button");
+
+        buttonYes.innerHTML = "Yes";
+        buttonNo.innerHTML = "No";
+        div.id = "quoteId";
+        divContainer.appendChild(div);
+        div.appendChild(h2);
+        div.appendChild(form);
+        form.id = "YesNo";
+
+        buttonYes.type = "button";
+        buttonNo.type = "button";
+        form.appendChild(buttonYes);
+        form.appendChild(buttonNo);
+
+        chooseCharacter();
+
     }
 
-    if (guesses < 10) {
-        loadQuote();
+    // choose character page 
+    const chooseCharacter = () => {
+        const firstPage = document.querySelector(".firstPage");
+        characterList.forEach(character => {
+            let image = document.createElement("img");
+            image.src = `images/${character.id}.png`;
+            image.alt = character.id;
+            image.addEventListener("click", () => { // starts the game
+                nameOfCharacterChosen = character.id;
+                characterList.forEach(element => {
+                    if (element.id === nameOfCharacterChosen) {
+                        chosenArray = element.quotes; // Puts quotes of chosen character into chosen array
+                    }
+                });
+                firstPage.style.display = "none"; // Hide the character selection div
+
+                // Create the block that will load the quote and let the user choose yes or no
+                createQuoteBlock();
+                loadQuote();
+                answerButton();
+            });
+            firstPage.appendChild(image);
+        });
     }
-}
 
-// no button logic
-const handleNoButtonClick = () => { 
+    
+    // load a character quote
+    const loadQuote = () => {
+        let x = Math.floor(Math.random() * 10);
+        let chosenIndex = Math.floor(Math.random() * chosenArray.length);
+        let characterIndex = Math.floor(Math.random() * jsonContent.length); // For choosing a random character from the json
+        let quotesIndex = Math.floor(Math.random() * jsonContent[characterIndex].quotes.length);
 
-    if (!yes) {
-        correctGuesses++;
-        guesses++;
-    } else {
-        guesses++;
+        const quoteId = document.getElementById("quoteId");
+
+        if (x > 8) { // Load a quote from the chosen character
+            let chosenQuote = chosenArray[chosenIndex];
+            let quote = document.querySelector("#container #quoteId h2");
+            quote.innerHTML = `Did <h2 id="charName"> ${nameOfCharacterChosen} </h2> say: ${chosenQuote}`;
+            quoteId.append(quote);
+            quoteUsed = chosenQuote;
+
+            // check if quote matches with the character chosen
+            checkQuote();
+            // remove duplicate
+            chosenArray.splice(chosenIndex, 1);
+
+        } else { // load random quote
+            let quote = document.querySelector("#quoteId h2");
+            quote.innerHTML = `Did <h2 id="charName"> ${nameOfCharacterChosen} </h2> say: ${jsonContent[characterIndex].quotes[quotesIndex]}`; // Choose random quote from a random character
+            quoteId.append(quote);
+            quoteUsed = jsonContent[characterIndex].quotes[quotesIndex];
+
+            // check if quote matches with the character chosen
+            checkQuote();
+            // remove used quote so no duplicates arise
+            jsonContent[characterIndex].quotes.splice(quotesIndex, 1);
+        }
+        return quoteUsed;
     }
 
-    if (shouldEndGame()) {
-        hideButtons();
-        let endGame = document.querySelector("#quoteId h2");
-        endGame.innerHTML = `Score: ${correctGuesses}/${guesses}`;
-        restartGame();
+    // will check if the quote loaded matches the chosen character: false for no, true for yes
+    const checkQuote = () => {
+        yes = false;
+        characterList.find(character => {
+            if (character.id === nameOfCharacterChosen) {
+                character.quotes.forEach(element => {
+                    if (quoteUsed === element) {
+                        yes = true;
+                    }
+                });
+            }
+        });
+        console.log("True is yes, false is no: " + yes);
+        return yes;
     }
 
-    if (guesses < 10) {
-        loadQuote();
+    // function that handles the yes and no buttons
+    const answerButton = () => {
+        const buttonYes = document.querySelector('#YesNo button:nth-child(1)');
+        const buttonNo = document.querySelector('#YesNo button:nth-child(2)');
+        buttonYes.addEventListener('click', handleYesButtonClick);
+        buttonNo.addEventListener('click', handleNoButtonClick);
     }
-}
 
-//  if guesses equal 10, the game should end, game ends if the function returns true
-const shouldEndGame = () => { 
-    let trueOrFalse = false;
-    if (guesses === 10) {
-        trueOrFalse = true;
+    // function that hides the yes or no buttons at the end of the game
+    const hideButtons = () => {
+        const buttonYes = document.querySelector('#YesNo button:nth-child(1)');
+        const buttonNo = document.querySelector('#YesNo button:nth-child(2)');
+        buttonNo.style.display = "none";
+        buttonYes.style.display = "none";
     }
-    return trueOrFalse;
-}
 
-// restart button event handler
-const handleRestartClick = () => { 
-    location.reload();
-}
+    // yes button logic
+    const handleYesButtonClick = () => {
 
-// creates a button that lets the user restart the game
-const restartGame = () => { 
-    const buttonRes = document.createElement("button");
-    const form = document.querySelector("form");
+        if (yes) {
+            correctGuesses++;
+            guesses++;
+            console.log(guesses);
+        } else {
+            guesses++;
+            console.log(guesses);
+        }
 
-    buttonRes.type = "button";
-    buttonRes.innerHTML = "Restart Game";
+        if (shouldEndGame()) {
+            hideButtons();
+            let endGame = document.querySelector("#quoteId h2");
+            endGame.innerHTML = `Score: ${correctGuesses}/${guesses}`;
+            restartGame();
+        }
 
-    form.appendChild(buttonRes);
+        if (guesses < 10) {
+            loadQuote();
+        }
+    }
 
-    const restartButton = document.querySelector("#YesNo button:last-child");
-    restartButton.addEventListener("click", handleRestartClick);
-}
+    // no button logic
+    const handleNoButtonClick = () => {
 
-const runGame = () => {
-    chooseCharacter();
-}
+        if (!yes) {
+            correctGuesses++;
+            guesses++;
+        } else {
+            guesses++;
+        }
 
-runGame();
+        if (shouldEndGame()) {
+            hideButtons();
+            let endGame = document.querySelector("#quoteId h2");
+            endGame.innerHTML = `Score: ${correctGuesses}/${guesses}`;
+            restartGame();
+        }
+
+        if (guesses < 10) {
+            loadQuote();
+        }
+    }
+
+    //  if guesses equal 10, the game should end, game ends if the function returns true
+    const shouldEndGame = () => {
+        let trueOrFalse = false;
+        if (guesses === 10) {
+            trueOrFalse = true;
+        }
+        return trueOrFalse;
+    }
+
+    // restart button event handler
+    const handleRestartClick = () => {
+        location.reload();
+    }
+
+    // creates a button that lets the user restart the game
+    const restartGame = () => {
+        const buttonRes = document.createElement("button");
+        const form = document.querySelector("form");
+
+        buttonRes.type = "button";
+        buttonRes.innerHTML = "Restart Game";
+
+        form.appendChild(buttonRes);
+
+        const restartButton = document.querySelector("#YesNo button:last-child");
+        restartButton.addEventListener("click", handleRestartClick);
+    }
+
+    const runGame = () => {
+        chooseCharacter();
+        
+    }
+
+    runGame();
+
+});
