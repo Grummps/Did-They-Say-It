@@ -55,6 +55,7 @@ body {
     width: 10em;
     padding: .5%;
     margin: 1em;
+    cursor: pointer;
 }
 
 p {
@@ -72,7 +73,7 @@ button {
 
 /* Style for the Yes button */
 button:nth-child(1) {
-    background: linear-gradient(to bottom, #27ae60, #219a52); /* Dark green gradient */
+    background: linear-gradient(to bottom, #002d4f, #001f3f); /* Dark blue gradient */
     color: #fff;
     padding: 12px 24px; 
     border: none;
@@ -81,14 +82,15 @@ button:nth-child(1) {
     transition: background 0.3s ease, transform 0.3s ease; 
 }
 
+/* Hover effect for the Yes button */
 button:nth-child(1):hover {
-    background: linear-gradient(to bottom, #219a52, #27ae60);
+    background: linear-gradient(to bottom, #3a383b, #331747);
     transform: scale(1.05); 
 }
 
 /* Style for the No button */
 button:nth-child(2) {
-    background: linear-gradient(to bottom, #c0392b, #a53224); /* Dark red gradient */
+    background: linear-gradient(to bottom, #6e1111, #3c0f0f);  /* Dark red gradient */
     color: #fff;
     padding: 12px 24px;
     border: none;
@@ -97,8 +99,9 @@ button:nth-child(2) {
     transition: background 0.3s ease, transform 0.3s ease;
 }
 
+
 button:nth-child(2):hover {
-    background: linear-gradient(to bottom, #a53224, #c0392b);
+    background: linear-gradient(to bottom, #3a383b, #331747);
     transform: scale(1.05);
 }
 
