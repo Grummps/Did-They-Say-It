@@ -7,6 +7,10 @@ document.addEventListener("DOMContentLoaded", () => {
     var chosenArray = [];
     var jsonContent;
     var characterList;
+    var clickedYes = false;
+    var clickedNo = false;
+    const divShow = document.querySelector("#storedQuotes");
+
 
     // function to make a synchronous AJAX request to get quotes
     function getQuotes() {
@@ -24,8 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     jsonContent = getQuotes();
     characterList = jsonContent;
-    console.log(jsonContent);
-    console.log("CharacterList: ", characterList);
 
     // create a block that the quote will load into
     const createQuoteBlock = () => {
@@ -78,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    
+
     // load a character quote
     const loadQuote = () => {
         let x = Math.floor(Math.random() * 10);
@@ -91,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (x > 8) { // Load a quote from the chosen character
             let chosenQuote = chosenArray[chosenIndex];
             let quote = document.querySelector("#container #quoteId h2");
-            quote.innerHTML = `Did <h2 id="charName"> ${nameOfCharacterChosen} </h2> say: ${chosenQuote}`;
+            quote.innerHTML = `Did <h2 id="charName"> ${nameOfCharacterChosen} </h2> say: "${chosenQuote}"`;
             quoteId.append(quote);
             quoteUsed = chosenQuote;
 
@@ -102,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         } else { // load random quote
             let quote = document.querySelector("#quoteId h2");
-            quote.innerHTML = `Did <h2 id="charName"> ${nameOfCharacterChosen} </h2> say: ${jsonContent[characterIndex].quotes[quotesIndex]}`; // Choose random quote from a random character
+            quote.innerHTML = `Did <h2 id="charName"> ${nameOfCharacterChosen} </h2> say: "${jsonContent[characterIndex].quotes[quotesIndex]}"`; // Choose random quote from a random character
             quoteId.append(quote);
             quoteUsed = jsonContent[characterIndex].quotes[quotesIndex];
 
@@ -114,21 +116,47 @@ document.addEventListener("DOMContentLoaded", () => {
         return quoteUsed;
     }
 
+    // Quote functions
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    // stores the quotes with correct answers
+    const storeQuotes = () => {
+        divShow.style.display = "none";
+
+        if (yes) {
+            let h2 = document.createElement("h2");
+            h2.innerHTML = `${nameOfCharacterChosen} said "${quoteUsed}"`;
+            divShow.append(h2);
+        } else {
+            let h2 = document.createElement("h2");
+            h2.innerHTML = `${nameOfCharacterChosen} did not say "${quoteUsed}"`;
+            divShow.append(h2);
+        }
+
+    }
+
+    // shows the quotes
+    const showQuotes = () => {
+        divShow.style.display = "block";
+    }
+
     // will check if the quote loaded matches the chosen character: false for no, true for yes
     const checkQuote = () => {
         yes = false;
         characterList.find(character => {
-            if (character.id === nameOfCharacterChosen) {
-                character.quotes.forEach(element => {
-                    if (quoteUsed === element) {
+            if (character.id === nameOfCharacterChosen) { // finds the character in array that matches nameOfCharacterChosen
+                character.quotes.forEach(element => { // enters quotes array for that character
+                    if (quoteUsed === element) {      // checks if the quoteUsed from loadQuote matches a quote from the quotes array 
                         yes = true;
                     }
                 });
             }
         });
-        console.log("True is yes, false is no: " + yes);
         return yes;
     }
+
+    // Button functions
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     // function that handles the yes and no buttons
     const answerButton = () => {
@@ -148,31 +176,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // yes button logic
     const handleYesButtonClick = () => {
-
+        clickedYes = false;
+        clickedNo = false;
+        storeQuotes();
         if (yes) {
             correctGuesses++;
             guesses++;
-            console.log(guesses);
         } else {
             guesses++;
-            console.log(guesses);
         }
 
         if (shouldEndGame()) {
             hideButtons();
             let endGame = document.querySelector("#quoteId h2");
             endGame.innerHTML = `Score: ${correctGuesses}/${guesses}`;
+            showQuotes();
             restartGame();
         }
 
         if (guesses < 10) {
             loadQuote();
         }
+        clickedYes = true;
+        storeAnswers();
     }
 
     // no button logic
     const handleNoButtonClick = () => {
-
+        clickedYes = false;
+        clickedNo = false;
+        storeQuotes();
         if (!yes) {
             correctGuesses++;
             guesses++;
@@ -184,11 +217,28 @@ document.addEventListener("DOMContentLoaded", () => {
             hideButtons();
             let endGame = document.querySelector("#quoteId h2");
             endGame.innerHTML = `Score: ${correctGuesses}/${guesses}`;
+            showQuotes();
             restartGame();
         }
 
         if (guesses < 10) {
             loadQuote();
+        }
+        clickedNo = true;
+        storeAnswers();
+    }
+
+    // stores the user's answers for each question
+    const storeAnswers = () => {
+        if (clickedYes) {
+            let p = document.createElement("p");
+            p.innerHTML = `You answered: Yes`;
+            divShow.append(p);
+        } 
+        if (clickedNo) {
+            let p = document.createElement("p");
+            p.innerHTML = `You answered: No`;
+            divShow.append(p);
         }
     }
 
@@ -222,7 +272,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const runGame = () => {
         chooseCharacter();
-        
     }
 
     runGame();

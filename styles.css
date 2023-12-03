@@ -59,7 +59,9 @@ body {
 }
 
 p {
-    background-color: #2ecc71; /* Emerald green */
+    text-align: center;
+    background-color: #001f3f;
+    color: silver;
 }
 
 #charName {
@@ -69,6 +71,12 @@ p {
 
 button {
     margin: 1em;
+}
+
+#storedQuotes {
+    text-align: center;
+    background-color: #001f3f;
+    color: silver;
 }
 
 /* Style for the Yes button */
