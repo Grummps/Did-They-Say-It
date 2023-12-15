@@ -129,3 +129,13 @@ button:nth-child(3):hover {
     transform: scale(1.05);
 }
 
+/* Add these styles to your existing styles */
+.incorrect-answer {
+    color: red;
+}
+
+.correct-answer {
+    color: green;
+}
+
+

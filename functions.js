@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
     var clickedNo = false;
     const divShow = document.querySelector("#storedQuotes");
 
-
     // function to make a synchronous AJAX request to get quotes
     function getQuotes() {
         const xhr = new XMLHttpRequest();
@@ -193,12 +192,13 @@ document.addEventListener("DOMContentLoaded", () => {
             showQuotes();
             restartGame();
         }
+        clickedYes = true;
+        storeAnswers();
 
         if (guesses < 10) {
             loadQuote();
         }
-        clickedYes = true;
-        storeAnswers();
+
     }
 
     // no button logic
@@ -220,27 +220,43 @@ document.addEventListener("DOMContentLoaded", () => {
             showQuotes();
             restartGame();
         }
+        clickedNo = true;
+        storeAnswers();
 
         if (guesses < 10) {
             loadQuote();
         }
-        clickedNo = true;
-        storeAnswers();
+
     }
 
     // stores the user's answers for each question
     const storeAnswers = () => {
+        let answerText = '';
+        let answerClass = '';
+
         if (clickedYes) {
-            let p = document.createElement("p");
-            p.innerHTML = `You answered: Yes`;
-            divShow.append(p);
-        } 
-        if (clickedNo) {
-            let p = document.createElement("p");
-            p.innerHTML = `You answered: No`;
-            divShow.append(p);
+            answerText = 'Yes';
+            if (yes) {
+                answerClass = 'correct-answer'
+            } else {
+                answerClass = 'incorrect-answer'
+            }
         }
+
+        if (clickedNo) {
+            answerText = 'No';
+            if (yes) {
+                answerClass = 'incorrect-answer'
+            } else {
+                answerClass = 'correct-answer'
+            }
+        }
+
+        let p = document.createElement("p");
+        p.innerHTML = `You answered: <span class="${answerClass}">${answerText}</span>`;
+        divShow.append(p);
     }
+
 
     //  if guesses equal 10, the game should end, game ends if the function returns true
     const shouldEndGame = () => {
